@@ -1,8 +1,25 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
+import { checkValidateData } from "../utils/validate";
 
 const Login = () => {
+
   const [isSignUp, setIsSignUp] = useState(false);
+  const [error, setError] = useState(null);
+
+  const name = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
+
+  const handleFormSubmit = ()=>{
+    if(isSignUp){
+        const msg = checkValidateData(name.current.value, email.current.value, password.current.value, isSignUp);
+        setError(msg);
+    }else{
+        const msg = checkValidateData(undefined, email.current.value, password.current.value, isSignUp);
+        setError(msg);
+    }
+  }
 
   const handleSignUp = () => {
     setIsSignUp(!isSignUp);
@@ -27,29 +44,37 @@ const Login = () => {
       </div>
       <div className="relative z-10 h-full">
         <div className="flex items-center justify-center justify-items-center sm:w-[30rem] sm:mx-auto w-full py-auto">
-          <form className="w-full h-full">
+          <form 
+          onSubmit={(e)=>{e.preventDefault()}}
+          className="w-full h-full">
             <div className="flex flex-col py-16 px-16 bg-black bg-opacity-80 rounded-md h-full w-full">
               <label className="text-white my-4 text-3xl font-bold">
                 {isSignUp ? "Sign Up" : "Sign In"}
               </label>
               {isSignUp && (
                 <input
+                ref={name}
                   type="text"
                   placeholder="Full Name"
                   className="mt-4 p-4 bg-slate-700 bg-opacity-60 rounded-md border border-gray-500 text-white"
                 />
               )}
               <input
+              ref={email}
                 type="text"
                 placeholder="Email Address"
                 className="mt-4 p-4 bg-slate-700 bg-opacity-60 rounded-md border border-gray-500 text-white"
               />
               <input
+              ref={password}
                 type="password"
                 placeholder="Enter Password"
                 className="mt-4 p-4 bg-slate-700 bg-opacity-60 rounded-md border border-gray-500 text-white"
               />
-              <button className="w-full text-white bg-[#E50914] hover:bg-[#C11119] p-2 text-lg mt-4 rounded-md">
+              {error && <p className="text-red-700 text-md font-bold mt-2">{error}</p>}
+              <button className="w-full text-white bg-[#E50914] hover:bg-[#C11119] p-2 text-lg mt-4 rounded-md"
+              onClick={handleFormSubmit}
+              >
                 {isSignUp ? "Sign Up" : "Sign In"}
               </button>
 

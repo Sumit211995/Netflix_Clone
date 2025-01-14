@@ -17,8 +17,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - Create React App
 - Configured TailwindCSS
 - Header
+- Routing of App
 - Login Form
 - Sign-up form
+- Form Validation  
+- Firebase Setup
+- Deploying app to production
+- Create Sign-up User account  
 
 # Features
 - Login/Sign Up
