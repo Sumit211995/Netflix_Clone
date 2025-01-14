@@ -11,7 +11,14 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
--Configured TailwindCSS
+
+# Netflix GPT
+
+- Create React App
+- Configured TailwindCSS
+- Header
+- Login Form
+- Sign-up form
 
 # Features
 - Login/Sign Up
