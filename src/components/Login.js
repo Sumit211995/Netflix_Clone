@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidateData } from "../utils/validate";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
 
@@ -12,13 +14,44 @@ const Login = () => {
   const password = useRef(null);
 
   const handleFormSubmit = ()=>{
+    const nameValue = name?.current?.value;
+    const emailValue = email.current.value;
+    const passwordValue = password.current.value;
     if(isSignUp){
-        const msg = checkValidateData(name.current.value, email.current.value, password.current.value, isSignUp);
+        const msg = checkValidateData(nameValue, emailValue, passwordValue, isSignUp);
         setError(msg);
     }else{
-        const msg = checkValidateData(undefined, email.current.value, password.current.value, isSignUp);
+        const msg = checkValidateData(undefined, emailValue, passwordValue);
         setError(msg);
     }
+    if(error) return;
+
+    if(isSignUp){
+      //signup logic
+      createUserWithEmailAndPassword(auth, emailValue, passwordValue)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    console.log(user);
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setError(errorMessage);
+  });
+    }else{
+      //signin logic
+      signInWithEmailAndPassword(auth, emailValue, passwordValue)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    console.log(user);
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setError(errorMessage);
+  });
+    }
+
   }
 
   const handleSignUp = () => {
@@ -79,7 +112,7 @@ const Login = () => {
               </button>
 
               {!isSignUp && (
-                <p className="text-gray-400 mt-12 mb-8">
+                <p className="text-gray-400 mt-12 mb-4">
                   New to Netflix?{" "}
                   <span
                     className="text-white font-bold cursor-pointer"
@@ -90,7 +123,7 @@ const Login = () => {
                 </p>
               )}
               {isSignUp && (
-                <p className="text-gray-400 mt-12 mb-8">
+                <p className="text-gray-400 mt-12 mb-4">
                   Already Registerd?{" "}
                   <span
                     className="text-white font-bold cursor-pointer"
