@@ -23,7 +23,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - Form Validation  
 - Firebase Setup
 - Deploying app to production
-- Create Sign-up User account  
+- Create Sign-up User account (firebase api, redux store) 
+- Implement Sign In user Api (firebase api)
+- Created Redux Store with userSlice
+- Implement signout (firebase api)
+- navigation with useNavigation
+- update profile api call from firebase
+
 
 # Features
 - Login/Sign Up
