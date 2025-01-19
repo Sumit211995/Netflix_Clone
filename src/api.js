@@ -34,3 +34,17 @@ export const UpcomingMovieListApi = async()=>{
     
     return response;
 }
+
+
+//Discover Movie API
+export const DiscoverMovieApi = async(genreId)=>{
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}`, API_OPTIONS);
+    
+    return response;
+}
+
+export const SearchMovieApi = async(movie)=>{
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`, API_OPTIONS);
+    
+    return response;
+}

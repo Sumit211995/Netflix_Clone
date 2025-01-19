@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import Search from "../images/search.svg";
-import { searchGptView } from "../utils/gptSlice";
+import { removeGPTMovieResult, searchGptView } from "../utils/gptSlice";
 import { SUPPORTED_LANGUAGES } from "../utils/constants";
 import { changeLanguage } from "../utils/configSlice";
 
@@ -54,6 +54,7 @@ const Header = () => {
 
   const handleGPTSearch = () => {
     dispatch(searchGptView());
+    dispatch(removeGPTMovieResult());
   };
 
   const handleLanguageChange = (e) => {
