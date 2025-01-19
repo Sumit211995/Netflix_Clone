@@ -5,10 +5,16 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
+import Search from "../images/search.svg";
+import { searchGptView } from "../utils/gptSlice";
+import { SUPPORTED_LANGUAGES } from "../utils/constants";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+
   const dispatch = useDispatch();
 
   const handleSignOut = () => {
@@ -23,7 +29,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-   const unSubscribe = onAuthStateChanged(auth, (user) => {
+    const unSubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         const { uid, email, displayName, photoURL } = user;
@@ -35,16 +41,24 @@ const Header = () => {
             photoURL: photoURL,
           })
         );
-        navigate('/browse');
+        navigate("/browse");
       } else {
         // User is signed out
         dispatch(removeUser());
-        navigate('/');
+        navigate("/");
       }
     });
-    //Unsubscribe when component unmount 
-    return ()=> unSubscribe();
+    //Unsubscribe when component unmount
+    return () => unSubscribe();
   }, []);
+
+  const handleGPTSearch = () => {
+    dispatch(searchGptView());
+  };
+
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
 
   return (
     <div className="absolute px-[2rem] py-[2rem] m-auto bg-gradient-to-b from-black w-full flex justify-between z-10">
@@ -57,13 +71,41 @@ const Header = () => {
       </div>
       <div>
         {user && (
-          <button
-            className="flex items-center gap-2 text-white font-bold"
-            onClick={handleSignOut}
-          >
-            <img src={user?.photoURL} className="w-10 h-10 rounded-full" />
-            Sign-out
-          </button>
+          <div className="flex gap-6">
+            {showGptSearch && (
+              <select
+                className="py-2 px-4 bg-neutral-800 text-white rounded-lg"
+                onChange={handleLanguageChange}
+              >
+                {SUPPORTED_LANGUAGES.map((lang) => (
+                  <option key={lang.identifier} value={lang.identifier}>
+                    {lang.name}
+                  </option>
+                ))}
+              </select>
+            )}
+
+            <button
+              className="flex items-center text-white "
+              onClick={handleGPTSearch}
+            >
+            {
+              showGptSearch ? 'Home' :  <img
+                src={Search}
+                className="w-6 h-6 fill-white text-white"
+                alt="Search"
+              />
+            }
+              
+            </button>
+            <button
+              className="flex items-center gap-2 text-white font-bold"
+              onClick={handleSignOut}
+            >
+              <img src={user?.photoURL} className="w-10 h-10 rounded-full" />
+              Sign-out
+            </button>
+          </div>
         )}
       </div>
     </div>

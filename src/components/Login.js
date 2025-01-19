@@ -9,7 +9,7 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import { photoURL } from "../utils/constants";
+import { BG_IMG, photoURL } from "../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -90,7 +90,7 @@ const Login = () => {
     <div
       className="flex items-center justify-center relative w-full h-full min-h-screen bg-cover bg-center font-inter"
       style={{
-        background: `url(${"/netflix_login_background_img.jpg"})`,
+        background: `url(${BG_IMG})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

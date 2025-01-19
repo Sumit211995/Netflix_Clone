@@ -51,6 +51,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - Create Different custom hook for 'NowPlaying Movie, Popular Movie, Top Rated movie, upcomingMovie'
 - TMDB API call for all different movie
 - Made Browse page UI with Tailwind CSS
+- GPT Search page
+- GPT Search Bar
+- Multi-language feature in our app 
 
 # Features
 - Login/Sign Up
