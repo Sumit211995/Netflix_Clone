@@ -48,7 +48,7 @@ const Header = () => {
 
   return (
     <div className="absolute px-[2rem] py-[2rem] m-auto bg-gradient-to-b from-black w-full flex justify-between z-10">
-      <div>
+      <div className="ml-8">
         <img
           src={Netflix}
           className="w-[9.25rem] h-[2.5rem]"

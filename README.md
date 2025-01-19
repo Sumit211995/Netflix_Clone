@@ -45,7 +45,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - Create different component for video background or video title
 - Embedded the you tube video and make it autoplay and mute
 - Use Tailwind css for main container
-
+- Build Secondary component
+- Build Movie list
+- Build Movie Card
+- Create Different custom hook for 'NowPlaying Movie, Popular Movie, Top Rated movie, upcomingMovie'
+- TMDB API call for all different movie
+- Made Browse page UI with Tailwind CSS
 
 # Features
 - Login/Sign Up
