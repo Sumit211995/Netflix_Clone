@@ -103,7 +103,7 @@ const Header = () => {
               className="flex items-center gap-2 text-white font-bold"
               onClick={handleSignOut}
             >
-              <img src={user?.photoURL} className="w-10 h-10 rounded-full" />
+              <img src={user?.photoURL} className="w-10 h-10 rounded-lg" />
               Sign-out
             </button>
           </div>

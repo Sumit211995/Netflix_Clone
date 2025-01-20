@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { UpcomingMovieListApi } from "../api";
 import { addUpcomingMovies } from "../utils/moviesSlice";
 import { useEffect } from "react";
@@ -6,6 +6,8 @@ import { useEffect } from "react";
 const useUpcomingMovies = () => {
   //fetch data from TMDB API and update store
   const dispatch = useDispatch();
+   //check upcomingMovies data available in the store
+  const upcomingMovies = useSelector((store)=>store?.movies?.upcomingMovies);
 
   //API call
   const getUpcomingMovies = async () => {
@@ -15,6 +17,8 @@ const useUpcomingMovies = () => {
   };
 
   useEffect(() => {
+    //if data available then not call the api
+    if(!upcomingMovies)
     getUpcomingMovies();
   }, []);
 };
