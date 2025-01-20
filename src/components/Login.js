@@ -99,20 +99,20 @@ const Login = () => {
         minWidth: "320px", // Ensure it doesn't shrink below this width
       }}
     >
-      <div className="absolute inset-0 bg-black opacity-40"></div>
+      <div className="absolute inset-0 bg-black opacity-40 mdmx:opacity-20"></div>
       <div className="absolute top-0 w-full">
         <Header />
       </div>
-      <div className="relative z-10 h-full">
+      <div className="relative z-10 h-full w-full">
         <div className="flex items-center justify-center justify-items-center sm:w-[30rem] sm:mx-auto w-full py-auto">
           <form
             onSubmit={(e) => {
               e.preventDefault();
             }}
-            className="w-full h-full"
+            className="w-full h-full mx-2"
           >
-            <div className="flex flex-col py-16 px-16 bg-black bg-opacity-80 rounded-md h-full w-full">
-              <label className="text-white my-4 text-3xl font-bold">
+            <div className="flex flex-col py-16 md:px-16 px-4 bg-black bg-opacity-80 rounded-md h-full w-full">
+              <label className="text-white my-4 text-3xl font-bold mdmx:text-xl">
                 {isSignUp ? "Sign Up" : "Sign In"}
               </label>
               {isSignUp && (
@@ -120,20 +120,20 @@ const Login = () => {
                   ref={name}
                   type="text"
                   placeholder="Full Name"
-                  className="mt-4 p-4 bg-slate-700 bg-opacity-60 rounded-md border border-gray-500 text-white"
+                  className="md:mt-4 mt-2 p-4 bg-slate-700 bg-opacity-60 rounded-md border border-gray-500 text-white w-full"
                 />
               )}
               <input
                 ref={email}
                 type="text"
                 placeholder="Email Address"
-                className="mt-4 p-4 bg-slate-700 bg-opacity-60 rounded-md border border-gray-500 text-white"
+                className="md:mt-4 mt-2 p-4 bg-slate-700 bg-opacity-60 rounded-md border border-gray-500 text-white w-full"
               />
               <input
                 ref={password}
                 type="password"
                 placeholder="Enter Password"
-                className="mt-4 p-4 bg-slate-700 bg-opacity-60 rounded-md border border-gray-500 text-white"
+                className="mt-4 p-4 bg-slate-700 bg-opacity-60 rounded-md border border-gray-500 text-white w-full"
               />
               {error && (
                 <p className="text-red-700 text-md font-bold mt-2">{error}</p>

@@ -27,6 +27,7 @@ const GptSearchBar = () => {
     music: 10402, // Music
     mystery: 9648, // Mystery
     romance: 10749, // Romance
+    romantic: 10749,
     scienceFiction: 878, // Science Fiction
     tvMovie: 10770, // TV Movie
     thriller: 53, // Thriller
@@ -88,7 +89,7 @@ const GptSearchBar = () => {
 
   return (
     <div
-      className="pt-[10%] w-full h-screen"
+      className="lg:pt-[10%] w-full h-screen md:pt-[30%] pt-[35%]"
       //   style={{
       //     background: `url(${BG_IMG})`,
       //     backgroundSize: "cover",
@@ -103,15 +104,15 @@ const GptSearchBar = () => {
         className="flex items-center w-full justify-center"
         onClick={(e) => e.preventDefault()}
       >
-        <div className="flex p-4 bg-black w-[50%] gap-8 items-center rounded-md">
+        <div className="flex p-4 bg-black xl:w-[50%] md:w-[60%] md:mx-0 mx-2 w-full md:gap-8 items-center rounded-md gap-4">
           <input
             ref={searchInputData}
             type="text"
-            className="h-10 p-4 w-[80%]"
+            className="h-10 md:p-4 lg:w-[80%] w-[65%] p-1"
             placeholder={lang[langKey].searchPlaceholder}
           />
           <button
-            className="text-white px-4 w-[20%] py-2 bg-red-700 rounded-lg flex items-center gap-4 font-bold"
+            className="text-white px-4 lg:w-[20%] w-[35%] py-2 bg-red-700 rounded-lg flex items-center md:gap-4 gap-2 font-bold"
             onClick={handleGptSearchClcik}
           >
             <img

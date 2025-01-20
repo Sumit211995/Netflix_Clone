@@ -3,8 +3,8 @@ import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
   return (
-    <div className="pl-8">
-      <h1 className="text-2xl py-4 text-white">{title}</h1>
+    <div className="sm:pl-8 pl-4">
+      <h1 className="md:text-2xl text-md py-4 text-white">{title}</h1>
       <div className="flex overflow-x-scroll hide-scrollbar">
         <div className="flex gap-2 ">
           {movies.map((movie) => (
