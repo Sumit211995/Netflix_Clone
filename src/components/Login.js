@@ -15,12 +15,13 @@ const Login = () => {
   const dispatch = useDispatch();
   const [isSignUp, setIsSignUp] = useState(false);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = async() => {
     const nameValue = name?.current?.value;
     const emailValue = email.current.value;
     const passwordValue = password.current.value;
@@ -37,7 +38,7 @@ const Login = () => {
       setError(msg);
     }
     if (error) return;
-
+    setLoading(true);
     if (isSignUp) {
       //signup logic
       createUserWithEmailAndPassword(auth, emailValue, passwordValue)
@@ -70,21 +71,33 @@ const Login = () => {
         });
     } else {
       //signin logic
-      signInWithEmailAndPassword(auth, emailValue, passwordValue)
-        .then((userCredential) => {
-          const user = userCredential.user;
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setError(errorMessage);
-        });
+      try {
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          emailValue,
+          passwordValue
+        );
+      } catch (error) {
+        setError(error.message);
+        console.error("Error signing in:", error.message);
+      } finally {
+        setLoading(false); // Stop the loader
+      }
+  
     }
   };
 
   const handleSignUp = () => {
     setIsSignUp(!isSignUp);
   };
+
+  if (loading) {
+    return (
+        <div className='flex items-center justify-center w-full h-screen overflow-hidden'>
+            <div className='animate-spin rounded-full h-16 w-16 border-t-[6px] border-red-500 border-solid'></div>
+        </div>
+    );
+}
 
   return (
     <div

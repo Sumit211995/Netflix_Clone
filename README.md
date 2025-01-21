@@ -58,6 +58,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - Implement TMDB movie api for search movie
 - Memoization for restrict api call again and again (by checking data available in redux store or not)
 - Responsive design done
+- Loader added after login
 
 # Features
 - Login/Sign Up
