@@ -69,6 +69,7 @@ const Login = () => {
           const errorMessage = error.message;
           setError(errorMessage);
         });
+        setLoading(false);
     } else {
       //signin logic
       try {

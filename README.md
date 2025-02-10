@@ -59,6 +59,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - Memoization for restrict api call again and again (by checking data available in redux store or not)
 - Responsive design done
 - Loader added after login
+- Hover added in each movie and play the movie after hovering
 
 # Features
 - Login/Sign Up
